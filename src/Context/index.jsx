@@ -28,7 +28,7 @@ export const ShoppingCartProvider = ({children}) => {
   const [account, setAccount] = useState({})
 
   // Sign-out state
-  const [signOut, setSignOut] = useState(false)
+  const [signOut, setSignOut] = useState(localStorage.getItem('sign-out'))
 
   
 

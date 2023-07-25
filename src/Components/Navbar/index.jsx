@@ -8,10 +8,12 @@ const Navbar = () => {
   const activeStyle = 'underline underline-offset-4'
 
   const handleSignOut = () => {
-    context.setSignOut(!context.signOut)
+    console.log(context.signOut)
+    context.setSignOut(true)
 
-    const stringifiedSignOut = JSON.stringify(context.signOut)
-    localStorage.setItem('sign-out', stringifiedSignOut)
+    localStorage.setItem('sign-out', context.signOut)
+    console.log(context.signOut)
+
   }
 
   return (
@@ -85,7 +87,7 @@ const Navbar = () => {
       </ul>
       <ul className='flex items-center gap-3'>
         <li className='text-black/60'>
-          teff@platzi.com
+        {!context.signOut && "email@email.com"}
         </li>
         <li>
           <NavLink
@@ -93,7 +95,7 @@ const Navbar = () => {
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
             }>
-            My Orders
+            {!context.signOut && "My Orders"}
           </NavLink>
         </li>
         <li>
@@ -102,18 +104,18 @@ const Navbar = () => {
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
             }>
-            My Account
+            {!context.signOut && "My Account"}
           </NavLink>
         </li>
         <li>
           <NavLink
-            to='/sing-in'
+            to='/sign-in'
             className={({ isActive }) =>
               isActive ? activeStyle : undefined
               }
             onClick={() => handleSignOut()}
               >
-            {!context.signOut ? "Sign In" : "Sign Out"}
+            {context.signOut ? "Sign In" : "Sign Out"}
           </NavLink>
         </li>
         <li className='flex items-center'>
